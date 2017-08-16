@@ -1,16 +1,11 @@
 import React from 'react'
-import { Route } from 'react-router'
-import App from 'components/App'
-import Base from 'components/Base'
-import Foo from 'containers/Foo'
-import Bar from 'containers/Bar'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { App } from 'components/App'
 
-const routes = (
-  <Route component={App}>
-    <Route path='/' component={Base} />
-    <Route path='/foo' component={Foo} />
-    <Route path='/bar' component={Bar} />
-  </Route>
+const routes = () => (
+  <Router>
+    <Route path='/' component={App} />
+  </Router>
 )
 
 export default routes

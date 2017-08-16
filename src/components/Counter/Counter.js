@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Counter = props => (
+export const Counter = props => (
   <div>
     <input type='text' onChange={props.setCounterName} />
     <div>{props.name}</div>
@@ -13,5 +13,3 @@ const Counter = props => (
 Counter.propTypes = {
 
 }
-
-export default Counter

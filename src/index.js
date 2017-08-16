@@ -1,19 +1,34 @@
-import { Router, browserHistory } from 'react-router'
-import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux'
-import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom'
 import React from 'react'
-import configureStore from 'store/configureStore'
-import routes from './routes'
+import { AppContainer } from 'react-hot-loader'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
+import { routerMiddleware } from 'react-router-redux'
+import { Provider } from 'react-redux'
+import configure from 'store/configure'
+import Root from './routes'
 
-const store = configureStore(routerMiddleware(browserHistory))
-syncHistoryWithStore(browserHistory, store)
+const history = createBrowserHistory()
+const store = configure(routerMiddleware(history))
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Router history={browserHistory}>
-      { routes }
-    </Router>
-  </Provider>,
-  document.getElementById('app')
-)
+const render = (Component) => {
+  ReactDOM.render(
+    <AppContainer>
+      <Provider store={store}>
+        <Router history={history}>
+          <Component />
+        </Router>
+      </Provider>
+    </AppContainer>,
+    document.getElementById('app'),
+  )
+}
+
+render(Root)
+
+if (module.hot) {
+  module.hot.accept('./routes', () => {
+    const newApp = require('./routes').default
+    render(newApp)
+  })
+}

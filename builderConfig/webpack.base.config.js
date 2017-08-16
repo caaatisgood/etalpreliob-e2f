@@ -30,7 +30,15 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['env', 'react', 'es2015', 'stage-0'],
+            plugins: [
+              'transform-react-jsx'
+            ]
+          }
+        }
       },
       {
         test: /\.scss$/,

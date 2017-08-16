@@ -8,5 +8,6 @@ export const App = props => (
       <li><Link to='/foo'>foo</Link></li>
       <li><Link to='/bar'>bar</Link></li>
     </ul>
+    { props.children }
   </div>
 )

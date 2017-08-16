@@ -39,12 +39,8 @@ class Foo extends Component {
   render () {
     return (
       <div>
-        <button onClick={this.handleToggleCounterVisibility}>
-          {
-            this.state.showCounter
-            ? 'Hide Counter'
-            : 'Show Counter'
-          }
+        <button onClick={() => this.test()}>
+          { this.state.showCounter ? 'Hide Counter' : 'Show Counter' }
         </button>
         {
           this.state.showCounter &&
@@ -74,7 +70,7 @@ Foo.propTypes = {
 }
 
 Foo.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({

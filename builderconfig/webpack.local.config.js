@@ -1,6 +1,8 @@
+const { resolve } = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const base = require('./webpack.base.config')
+const appRoot = resolve(__dirname, '../src')
 
 const config = merge(base, {
   entry: {
@@ -10,6 +12,12 @@ const config = merge(base, {
       'webpack/hot/only-dev-server',
       '../src/index.js',
     ],
+  },
+
+  resolve: {
+    alias: {
+      configuration: resolve(appRoot, 'config/local'),
+    },
   },
 
   plugins: [

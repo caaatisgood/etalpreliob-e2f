@@ -1,4 +1,4 @@
-const join = require('path').join
+const path = require('path')
 
 module.exports = {
   extends: 'airbnb',
@@ -38,7 +38,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       webpack: {
-        config: join(__dirname, './builderconfig/webpack.config.base.js')
+        config: path.join(__dirname, './builderconfig/webpack.config.base.js')
       }
     }
   }

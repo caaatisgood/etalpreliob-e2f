@@ -2,6 +2,7 @@ const { resolve } = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
 const appRoot = resolve(__dirname, '../src')
 const isProd = process.env.NODE_ENV === 'production'
 

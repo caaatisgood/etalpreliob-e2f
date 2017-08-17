@@ -7,14 +7,14 @@ import {
   setCounterName,
 } from 'actions/counter'
 import { getCounter } from 'reducers'
-import { Counter } from 'components/counter'
 
-class Foo extends Component {
+class Counter extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
       showCounter: false,
+      counterName: ''
     }
   }
 
@@ -32,34 +32,39 @@ class Foo extends Component {
     this.props.counterMinus(1)
   }
 
-  handleSetCounterName = e => {
-    this.props.setCounterName(e.target.value)
+  handleCounterNameChange = e => {
+    this.setState({
+      counterName: e.target.value
+    })
+  }
+
+  handleSetCounterName = () => {
+    this.props.setCounterName(this.state.counterName)
+    this.setState({
+      counterName: ''
+    })
   }
 
   render () {
     return (
       <div>
-        <button onClick={this.handleToggleCounterVisibility}>
-          { this.state.showCounter ? 'Hide Counter' : 'Show Counter' }
-        </button>
-        {
-          this.state.showCounter &&
-          (
-            <Counter
-              name={this.props.counter.name}
-              value={this.props.counter.value}
-              counterPlus={this.handleCounterPlus}
-              counterMinus={this.handleCounterMinus}
-              setCounterName={this.handleSetCounterName}
-            />
-          )
-        }
+        <input
+          type='text'
+          placeholder='name your counter'
+          value={this.state.counterName}
+          onChange={this.handleCounterNameChange}
+        />
+        <button onClick={this.handleSetCounterName}>set</button>
+        <div>name: {this.props.counter.name}</div>
+        <div>value: {this.props.counter.value}</div>
+        <button onClick={this.handleCounterPlus}>+</button>
+        <button onClick={this.handleCounterMinus}>-</button>
       </div>
     )
   }
 }
 
-Foo.propTypes = {
+Counter.propTypes = {
   counter: PropTypes.shape({
     name: PropTypes.string,
     value: PropTypes.number,
@@ -67,10 +72,6 @@ Foo.propTypes = {
   counterPlus: PropTypes.func,
   counterMinus: PropTypes.func,
   setCounterName: PropTypes.func,
-}
-
-Foo.contextTypes = {
-  router: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -84,4 +85,4 @@ export default connect(
     counterMinus,
     setCounterName,
   },
-)(Foo)
+)(Counter)

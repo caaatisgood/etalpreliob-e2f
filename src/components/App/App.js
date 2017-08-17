@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router'
-import Foo from 'containers/Foo'
-import Bar from 'containers/Bar'
 
 export const App = props => (
   <div>
@@ -9,6 +7,7 @@ export const App = props => (
     <ul>
       <li><Link to='/foo'>foo</Link></li>
       <li><Link to='/bar'>bar</Link></li>
+      <li><Link to='/counter'>counter</Link></li>
     </ul>
     { props.children }
   </div>

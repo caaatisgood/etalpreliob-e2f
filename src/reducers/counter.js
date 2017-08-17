@@ -23,5 +23,5 @@ const name = (state = 'cool counter', action) => {
 
 export default combineReducers({
   value,
-  name
+  name,
 })

@@ -18,7 +18,7 @@ const config = {
       'react-hot-loader/patch',
       'react',
       'react-redux',
-      'react-router-dom',
+      'react-router',
     ],
   },
 
@@ -47,15 +47,7 @@ const config = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['es2015', 'stage-0', 'react'],
-            plugins: [
-              'react-hot-loader/babel',
-            ],
-          },
-        },
+        use: 'babel-loader',
       },
       {
         test: /\.scss$/,
@@ -113,7 +105,11 @@ const config = {
       },
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new ExtractTextPlugin({ filename: 'style.css', disable: false, allChunks: true }),
+    new ExtractTextPlugin({
+      filename: 'style.css',
+      disable: false,
+      allChunks: true
+    }),
     new webpack.HotModuleReplacementPlugin(),
   ],
 }

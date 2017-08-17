@@ -7,14 +7,14 @@ import {
   setCounterName,
 } from 'actions/counter'
 import { getCounter } from 'reducers'
+import Counter from 'components/Counter'
 
-class Counter extends Component {
+export class CounterPage extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      showCounter: false,
-      counterName: ''
+      showCounter: false
     }
   }
 
@@ -32,33 +32,34 @@ class Counter extends Component {
     this.props.counterMinus(1)
   }
 
-  handleCounterNameChange = e => {
-    this.setState({
-      counterName: e.target.value
-    })
-  }
-
-  handleSetCounterName = () => {
-    this.props.setCounterName(this.state.counterName)
-    this.setState({
-      counterName: ''
-    })
+  handleSetCounterName = name => {
+    this.props.setCounterName(name)
   }
 
   render () {
     return (
       <div>
-        <input
-          type='text'
-          placeholder='name your counter'
-          value={this.state.counterName}
-          onChange={this.handleCounterNameChange}
-        />
-        <button onClick={this.handleSetCounterName}>set</button>
-        <div>name: {this.props.counter.name}</div>
-        <div>value: {this.props.counter.value}</div>
-        <button onClick={this.handleCounterPlus}>+</button>
-        <button onClick={this.handleCounterMinus}>-</button>
+        <button onClick={this.handleToggleCounterVisibility}>
+          {
+            this.state.showCounter
+            ? 'Hide Counter'
+            : 'Show Counter'
+          }
+        </button>
+        <hr />
+        {
+          this.state.showCounter &&
+          (
+            <Counter
+              inputName={this.state.counterName}
+              onNameChange={this.handleCounterNameChange}
+              setName={this.handleSetCounterName}
+              counter={this.props.counter}
+              plus={this.handleCounterPlus}
+              minus={this.handleCounterMinus}
+            />
+          )
+        }
       </div>
     )
   }
@@ -85,4 +86,4 @@ export default connect(
     counterMinus,
     setCounterName,
   },
-)(Counter)
+)(CounterPage)

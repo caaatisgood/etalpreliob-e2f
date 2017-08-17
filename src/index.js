@@ -3,7 +3,7 @@ import React from 'react'
 import { AppContainer } from 'react-hot-loader'
 import {
   Router,
-  browserHistory
+  browserHistory,
 } from 'react-router'
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux'

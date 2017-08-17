@@ -1,5 +1,7 @@
 import React from 'react'
 
-export const Foo = props => (
+const Foo = props => (
   <div>Foo</div>
 )
+
+export default Foo

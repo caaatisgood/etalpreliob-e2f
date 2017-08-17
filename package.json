@@ -1,12 +1,12 @@
 {
   "name": "etalpreliob-e2f",
   "version": "0.3.0",
-  "description": "F2E boilerplate with React Redux stack",
+  "description": "Frontend boilerplate with React/Redux/Webpack/Jest/Enzyme stack",
   "main": "index.js",
   "scripts": {
-    "local": "webpack-dev-server --config ./builderconfig/webpack.local.config.js",
+    "local": "node devServer",
     "clean": "rimraf dist",
-    "build:prod": "cross-env npm run clean && webpack --config ./builderconfig/webpack.prod.config.js --progress --profile --colors",
+    "build:prod": "cross-env npm run clean && cross-env NODE_ENV=production webpack --config ./builderconfig/webpack.config.prod.js --progress --colors",
     "lint": "eslint ./src/**/**.js",
     "test": "jest",
     "test:watch": "jest --watch"

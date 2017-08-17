@@ -10,27 +10,28 @@ const config = require('./builderconfig/webpack.config.local.js')
 const compiler = webpack(config)
 const server = express()
 const router = express.Router()
+require('colors')
 
 router.post('/mock/*', (req, res) => {
   const requestQueryParams = req.path
-        .split('/')
-        .slice(1)
-        .join('/')
+    .split('/')
+    .slice(1)
+    .join('/')
 
   res.send(JSON.parse(fs.readFileSync(requestQueryParams.replace(/\?.*$/, ''), 'utf8')))
 })
 
 router.get('/mock/*', (req, res) => {
   const requestQueryParams = req.path
-        .split('/')
-        .slice(1)
-        .join('/')
+    .split('/')
+    .slice(1)
+    .join('/')
 
   res.send(JSON.parse(fs.readFileSync(requestQueryParams.replace(/\?.*$/, ''), 'utf8')))
 })
 
 router.get('/', (req, res) => {
-  res.sendFile('index.html', { root: __dirname })
+  res.sendFile('./src/index.html', { root: __dirname })
 })
 
 server.use(webpackDevMiddleware(compiler, {
@@ -38,6 +39,9 @@ server.use(webpackDevMiddleware(compiler, {
   hot: true,
   historyApiFallback: true,
   headers: { 'Access-Control-Allow-Origin': '*' },
+  stats: {
+    colors: true,
+  },
 }))
 server.use(webpackHotMiddleware(compiler))
 server.use(bodyParser.urlencoded({ extended: true }))
@@ -49,7 +53,7 @@ server.listen(PORT, (err) => {
   if (err) {
     console.log(err)
   } else {
-    console.info('using congfig.local.js'.green)
-    console.info(`==> Listening on port ${PORT}. Open up http://localhost:${PORT}/ in your browser.`, PORT, PORT)
+    console.info('using config/local.js'.green)
+    console.info(`==> Listening on port ${PORT}. Open up ` + `http://localhost:${PORT}/`.green + ' in your browser.\n')
   }
 })

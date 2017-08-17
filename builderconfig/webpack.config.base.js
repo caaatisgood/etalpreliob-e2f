@@ -95,7 +95,7 @@ module.exports = {
       test: /\.js$/,
       options: {
         eslint: {
-          configFile: resolve(appRoot, '../.eslintrc'),
+          configFile: resolve(appRoot, '../.eslintrc.js'),
           cache: false,
         },
       },

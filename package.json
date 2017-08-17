@@ -1,8 +1,8 @@
 {
   "name": "etalpreliob-e2f",
   "version": "0.3.0",
-  "description": "Frontend boilerplate with React/Redux/Webpack/Jest/Enzyme stack",
-  "main": "index.js",
+  "description": "Frontend boilerplate with React/Redux/webpack/Jest/Enzyme stack",
+  "main": "src/index.js",
   "scripts": {
     "local": "node devServer",
     "clean": "rimraf dist",

@@ -2,15 +2,15 @@ import * as t from 'constants/actionTypes'
 
 export const counterPlus = amount => ({
   type: t.COUNTER_PLUS,
-  amount
+  amount,
 })
 
 export const counterMinus = amount => ({
   type: t.COUNTER_MINUS,
-  amount
+  amount,
 })
 
 export const setCounterName = name => ({
   type: t.SET_COUNTER_NAME,
-  name
+  name,
 })

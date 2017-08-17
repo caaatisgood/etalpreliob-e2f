@@ -14,7 +14,7 @@ export class CounterPage extends Component {
     super(props)
 
     this.state = {
-      showCounter: false
+      showCounter: false,
     }
   }
 
@@ -65,7 +65,7 @@ export class CounterPage extends Component {
   }
 }
 
-Counter.propTypes = {
+CounterPage.propTypes = {
   counter: PropTypes.shape({
     name: PropTypes.string,
     value: PropTypes.number,

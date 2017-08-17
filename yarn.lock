@@ -5334,7 +5334,7 @@ redux-logger@3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-mock-store@^1.2.3:
+redux-mock-store@1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/redux-mock-store/-/redux-mock-store-1.2.3.tgz#1b3ad299da91cb41ba30d68e3b6f024475fb9e1b"
 
@@ -6353,6 +6353,12 @@ webpack-dev-server@2.7.1:
     supports-color "^3.1.1"
     webpack-dev-middleware "^1.11.0"
     yargs "^6.0.0"
+
+webpack-merge@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-4.1.0.tgz#6ad72223b3e0b837e531e4597c199f909361511e"
+  dependencies:
+    lodash "^4.17.4"
 
 webpack-sources@^1.0.1:
   version "1.0.1"

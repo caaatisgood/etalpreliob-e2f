@@ -1,8 +1,5 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-// import configureMockStore from 'redux-mock-store'
-// import thunk from 'redux-thunk'
-// import * as actions from 'actions/counter'
 import { CounterPage } from 'containers/CounterPage'
 import Counter from 'components/Counter'
 

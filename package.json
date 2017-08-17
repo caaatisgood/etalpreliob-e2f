@@ -4,9 +4,9 @@
   "description": "F2E boilerplate with React Redux stack",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "local": "webpack-dev-server --config ./builderconfig/webpack.local.config.js",
     "clean": "rimraf dist",
-    "production": "cross-env npm run clean && webpack --config webpack.production.config.js --progress --profile --colors",
+    "build:prod": "cross-env npm run clean && webpack --config ./builderconfig/webpack.prod.config.js --progress --profile --colors",
     "lint": "eslint ./src/**/**.js",
     "test": "jest",
     "test:watch": "jest --watch"
@@ -56,9 +56,11 @@
     "rimraf": "2.6.1",
     "sass-loader": "6.0.6",
     "style-loader": "0.18.2",
+    "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "0.5.8",
     "webpack": "3.5.2",
-    "webpack-dev-server": "2.7.1"
+    "webpack-dev-server": "2.7.1",
+    "webpack-merge": "^4.1.0"
   },
   "jest": {
     "moduleDirectories": [

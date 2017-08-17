@@ -2,18 +2,15 @@ const { resolve } = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const appRoot = resolve(__dirname, 'src')
+const appRoot = resolve(__dirname, '../src')
+const isProd = process.env.NODE_ENV === 'production'
 
-const config = {
-  devtool: 'cheap-module-eval-source-map',
+module.exports = {
+  devtool: isProd
+    ? false
+    : 'cheap-module-eval-source-map',
 
   entry: {
-    main: [
-      'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:8080',
-      'webpack/hot/only-dev-server',
-      './index.js',
-    ],
     vendor: [
       'react-hot-loader/patch',
       'react',
@@ -24,17 +21,11 @@ const config = {
 
   output: {
     filename: 'bundle.js',
-    path: resolve(__dirname, 'dist'),
+    path: resolve(appRoot, '../dist'),
     publicPath: '/',
   },
 
   context: appRoot,
-
-  devServer: {
-    hot: true,
-    contentBase: resolve(__dirname, 'build'),
-    publicPath: '/',
-  },
 
   module: {
     rules: [
@@ -59,7 +50,7 @@ const config = {
             {
               loader: 'sass-loader',
               query: {
-                sourceMap: false,
+                sourceMap: isProd,
               },
             },
           ],
@@ -89,6 +80,11 @@ const config = {
       name: 'vendor',
       filename: 'vendor.js',
     }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+      },
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: resolve(appRoot, 'index.html'),
@@ -99,7 +95,7 @@ const config = {
       test: /\.js$/,
       options: {
         eslint: {
-          configFile: resolve(__dirname, '.eslintrc'),
+          configFile: resolve(appRoot, '../.eslintrc'),
           cache: false,
         },
       },
@@ -110,8 +106,5 @@ const config = {
       disable: false,
       allChunks: true,
     }),
-    new webpack.HotModuleReplacementPlugin(),
   ],
 }
-
-module.exports = config

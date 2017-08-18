@@ -5,6 +5,31 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const appRoot = resolve(__dirname, '../src')
 const isProd = process.env.NODE_ENV === 'production'
+const scssLoaderRules = [
+  {
+    loader: 'css-loader',
+    options: {
+      modules: true,
+      sourceMap: !isProd,
+      importLoaders: 2,
+      localIdentName: '[name]__[local]_[hash:base64:6]',
+    },
+  },
+  {
+    loader: 'sass-loader',
+    query: {
+      sourceMap: !isProd,
+    },
+  },
+  {
+    loader: 'postcss-loader',
+    options: {
+      config: {
+        path: resolve(appRoot, '../builderconfig', 'postcss.config.js'),
+      },
+    },
+  },
+]
 
 module.exports = {
   devtool: isProd
@@ -13,7 +38,6 @@ module.exports = {
 
   entry: {
     vendor: [
-      'react-hot-loader/patch',
       'react',
       'react-redux',
       'react-router',
@@ -37,25 +61,42 @@ module.exports = {
         loader: 'eslint-loader',
       },
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: 'babel-loader',
-      },
-      {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            'css-loader',
-            {
-              loader: 'sass-loader',
-              query: {
-                sourceMap: isProd,
-              },
-            },
+        use: isProd
+          ? ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: scssLoaderRules,
+          })
+          : [
+            'style-loader',
+            ...scssLoaderRules,
           ],
-        }),
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015', 'stage-0', 'react'],
+            plugins: [
+              'react-hot-loader/babel',
+              'transform-react-jsx',
+              [
+                'react-css-modules',
+                {
+                  context: appRoot,
+                  filetypes: {
+                    '.scss': { syntax: 'postcss-scss' },
+                  },
+                  generateScopedName: '[name]__[local]_[hash:base64:6]',
+                  webpackHotModuleReloading: true,
+                },
+              ],
+            ],
+          },
+        },
       },
       { test: /\.(png|jpg)$/, use: 'url-loader?limit=15000' },
       { test: /\.eot(\?v=\d+.\d+.\d+)?$/, use: 'file-loader' },
@@ -103,8 +144,7 @@ module.exports = {
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new ExtractTextPlugin({
-      filename: 'style.css',
-      disable: false,
+      filename: '[name].css',
       allChunks: true,
     }),
   ],

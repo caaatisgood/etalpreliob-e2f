@@ -15,6 +15,10 @@ const config = merge(base, {
     ],
   },
 
+  devServer: {
+    hot: true,
+  },
+
   resolve: {
     alias: {
       configuration: resolve(appRoot, 'config/local'),

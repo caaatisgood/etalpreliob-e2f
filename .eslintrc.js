@@ -27,7 +27,7 @@ module.exports = {
     semi: 'off',
     'arrow-body-style': 'off',
     'arrow-parens': 'off',
-    'no-unused-vars': ['error', {
+    'no-unused-vars': ['warn', {
       'args': 'none',
       'ignoreRestSiblings': false,
       'caughtErrors': 'none'

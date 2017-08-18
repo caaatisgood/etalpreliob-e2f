@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 import './app.scss'
 
 const App = props => (
-  <div>
+  <div styleName='appWrap'>
     <h1 id='title'>App Title</h1>
     <ul>
       <li><Link to='/foo'>foo</Link></li>

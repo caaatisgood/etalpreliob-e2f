@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
-import * as t from 'constants/actionTypes'
+import * as types from 'constants/actionTypes'
 
 const value = (state = 0, action) => {
   switch (action.type) {
-    case t.COUNTER_PLUS:
+    case types.COUNTER_PLUS:
       return state + action.amount
-    case t.COUNTER_MINUS:
+    case types.COUNTER_MINUS:
       return state - action.amount
     default:
       return state
@@ -14,7 +14,7 @@ const value = (state = 0, action) => {
 
 const name = (state = 'cool counter', action) => {
   switch (action.type) {
-    case t.SET_COUNTER_NAME:
+    case types.SET_COUNTER_NAME:
       return action.name
     default:
       return state

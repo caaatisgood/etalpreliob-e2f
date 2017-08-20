@@ -1,22 +1,23 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router'
+import { Route, Link } from 'react-router-dom'
+import Home from 'components/Home'
+import Pages from 'components/Pages'
+import CounterPage from 'containers/CounterPage'
 import './app.scss'
 
 const App = props => (
   <div styleName='appWrap'>
     <h1 id='title'>App Title</h1>
     <ul>
-      <li><Link to='/foo'>foo</Link></li>
-      <li><Link to='/bar'>bar</Link></li>
-      <li><Link to='/counter'>counter</Link></li>
+      <li><Link to='' replace>Home</Link></li>
+      <li><Link to='/pages' replace>Pages</Link></li>
+      <li><Link to='/counter' replace>Counter</Link></li>
     </ul>
-    { props.children }
+
+    <Route exact path='/' component={Home} />
+    <Route path='/pages' component={Pages} />
+    <Route path='/counter' component={CounterPage} />
   </div>
 )
-
-App.propTypes = {
-  children: PropTypes.node,
-}
 
 export default App

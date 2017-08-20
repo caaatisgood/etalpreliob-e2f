@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import {
   counterPlus,
   counterMinus,
@@ -39,6 +39,7 @@ export class CounterPage extends Component {
   render () {
     return (
       <div>
+        <h2>Counter</h2>
         <button onClick={this.handleToggleCounterVisibility}>
           {
             this.state.showCounter

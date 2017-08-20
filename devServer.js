@@ -1,12 +1,14 @@
-const webpack = require('webpack')
+/* eslint-disable */
+const fs = require('fs')
 const express = require('express')
 const request = require('request')
+const bodyParser = require('body-parser')
+const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
-const bodyParser = require('body-parser')
-const fs = require('fs')
-const PORT = process.env.PORT || 8080
 const config = require('./builderconfig/webpack.config.local.js')
+
+const PORT = process.env.PORT || 8080
 const compiler = webpack(config)
 const server = express()
 const router = express.Router()
@@ -18,7 +20,7 @@ router.post('/mock/*', (req, res) => {
     .slice(1)
     .join('/')
 
-  res.send(JSON.parse(fs.readFileSync(requestQueryParams.replace(/\?.*$/, ''), 'utf8')))
+  res.send(JSON.parse(fs.readFileSync(requestQueryParams.replace(/\?.*$/, '') + '.json', 'utf8')))
 })
 
 router.get('/mock/*', (req, res) => {
@@ -27,7 +29,7 @@ router.get('/mock/*', (req, res) => {
     .slice(1)
     .join('/')
 
-  res.send(JSON.parse(fs.readFileSync(requestQueryParams.replace(/\?.*$/, ''), 'utf8')))
+  res.send(JSON.parse(fs.readFileSync(requestQueryParams.replace(/\?.*$/, '') + '.json', 'utf8')))
 })
 
 router.get('/', (req, res) => {

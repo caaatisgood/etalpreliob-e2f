@@ -15,12 +15,15 @@ module.exports = {
     es6: true
   },
   rules: {
+    'array-callback-return': 'off',
     'space-before-function-paren': 'off',
     'react/prefer-stateless-function': 'warn',
     'react/jsx-filename-extension': ['warn', {
       extensions: ['.js', '.jsx']
     }],
     'react/require-default-props': 'off',
+    'react/prop-types': 'warn',
+    'react/forbid-prop-types': 'warn',
     'jsx-quotes': ['error', 'prefer-single'],
     'linebreak-style': 'off',
     'global-require': 'off',
@@ -32,13 +35,14 @@ module.exports = {
       'ignoreRestSiblings': false,
       'caughtErrors': 'none'
     }],
+    'no-trailing-spaces': 'warn',
     'import/prefer-default-export': 'off',
     'import/no-named-as-default': 'off'
   },
   settings: {
     'import/resolver': {
       webpack: {
-        config: join(__dirname, './builderconfig/webpack.config.base.js')
+        config: join(__dirname, './builderconfig/index.js')
       }
     }
   }

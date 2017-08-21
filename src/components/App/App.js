@@ -10,6 +10,7 @@ const App = props => (
       <li><Link to='/foo'>foo</Link></li>
       <li><Link to='/bar'>bar</Link></li>
       <li><Link to='/counter'>counter</Link></li>
+      <li><Link to='/hello'>hello</Link></li>
     </ul>
     { props.children }
   </div>

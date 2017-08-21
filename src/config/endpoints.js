@@ -1,5 +1,5 @@
 const endpoints = {
-  HelloEndpoint: '/Hello',
+  helloEndpoint: '/hello',
 }
 
 export default (prefix) => {

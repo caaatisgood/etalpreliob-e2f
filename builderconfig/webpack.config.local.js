@@ -8,7 +8,7 @@ const appRoot = resolve(__dirname, '../src')
 const config = merge(base, {
   entry: {
     main: [
-      'webpack-hot-middleware/client?http://localhost:8080',
+      'webpack-hot-middleware/client',
       'webpack/hot/only-dev-server',
       'react-hot-loader/patch',
       '../src/index.js',
